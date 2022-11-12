@@ -1,0 +1,40 @@
+@media(max-width:360px){
+    .work img{
+        height: 500px;
+    }
+
+    #header nav img{
+        width: 150px;
+    }
+
+     #header nav ul{
+        width: 70%;
+     }
+}
+
+@media(max-width:390px){
+    .work img {
+        height: 500px;
+    }
+
+    #header nav .logo {
+        width: 150px;
+    }
+
+    #header nav ul {
+        width: 70%;
+    }
+}
+
+@media(max-width:767px) {
+ .header-text h1{
+    font-size: 35px;
+ }
+}
+
+@media(max-width:750px) {
+    .about-col-1 img {
+    width: 300px;
+    height: 400px;
+}
+}

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <!--Costom CSS-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="swiper/swiper-bundle.min.js">
+    <script src="https://kit.fontawesome.com/cc0518c3d2.js" crossorigin="anonymous"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        var TxtType = function (el, toRotate, period) {
+            this.toRotate = toRotate;
+            this.el = el;
+            this.loopNum = 0;
+            this.period = parseInt(period, 10) || 2000;
+            this.txt = '';
+            this.tick();
+            this.isDeleting = false;
+        };
+
+        TxtType.prototype.tick = function () {
+            var i = this.loopNum % this.toRotate.length;
+            var fullTxt = this.toRotate[i];
+
+            if (this.isDeleting) {
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+
+            this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+            var that = this;
+            var delta = 200 - Math.random() * 100;
+
+            if (this.isDeleting) { delta /= 2; }
+
+            if (!this.isDeleting && this.txt === fullTxt) {
+                delta = this.period;
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+                this.isDeleting = false;
+                this.loopNum++;
+                delta = 500;
+            }
+
+            setTimeout(function () {
+                that.tick();
+            }, delta);
+        };
+        window.onload = function () {
+            var elements = document.getElementsByClassName('typewrite');
+            for (var i = 0; i < elements.length; i++) {
+                var toRotate = elements[i].getAttribute('data-type');
+                var period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                    new TxtType(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+            // INJECT CSS
+            var css = document.createElement("style");
+            css.type = "text/css";
+            css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+            document.body.appendChild(css);
+        };
+    </script>
+</head>
+
+<body style="background-color: black; color: white;">
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img class="logo" src="images/logo.png">
+                <ul>
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- <div class="header-text">
+                <p>FRONT END DEVELOPER</p>
+                <h1>Hi, I'm <span>Himanshu</span> <br> Kushwah From India</h1>
+            </div> -->
+            <div class="header-text" data-aos="fade-in">
+                <p>FRONT END DEVELOPER</p>
+                <h1>Hi, I'm <span>Himanshu</span> <br> Kushwah From India</h1>
+                <h1 class="typewrite text-pink" data-period="2000"
+                    data-type='[ "WEB DESIGNER", "HTML DEVELOPER", "UI DESIGNER", "FREELANCER"]'>
+                    <span class="wrap"></span>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <!-- -------about-------- -->
+    <div id="about">
+        <div class="container">
+            <div class="row about">
+                <div class="col-lg-4 col-md-6 about-col-1">
+                    <img src="images/my.jpg">
+                </div>
+                <div class="col-lg-8 col-md-6  about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>“I am a self-starter with strong interpersonal skills. I work efficiently both as an individual
+                        contributor as well as
+                        along with a team. I seek new challenges and try to think out-of-the-box while looking for
+                        creative solutions to a given
+                        problem.
+
+                        Besides the details given in my resume, I believe in character, values, vision, and action. I am
+                        a quick learner and
+                        believe in learning from my mistakes for I strongly feel that this virtue will take me ahead in
+                        life and career.”
+                    </p>
+
+                    <div class="mytabs">
+                        <input type="radio" id="skills" name="mytabs" checked="checked">
+                        <label for="skills">Skills</label>
+                        <div class="tab">
+                            <div class="row">
+                                <div class="col-lg-8 main-1 main">
+                                    <ul>
+                                        <li>HTML <br>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                    role="progressbar" aria-label="Animated striped example"
+                                                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 80%">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>CSS <br>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                    role="progressbar" aria-label="Animated striped example"
+                                                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 75%">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>BOOTSTRAP <br>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                    role="progressbar" aria-label="Animated striped example"
+                                                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 85%">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>JAVASCRIPT <br>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                    role="progressbar" aria-label="Animated striped example"
+                                                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: 55%">
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="radio" id="education" name="mytabs">
+                        <label for="education">Education</label>
+                        <div class="tab">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <ul>
+                                        <li>10th <br>IN 2014 WITH 60%</li>
+                                        <li>12th <br>IN 2016 WITH 70%</li>
+                                        <li>GRADUATION <br>BACHELOR IN SCIENCE IN 2016 WITH 59%</li>
+                                        <li>DILPLOMA <br>IN ELEMONTARY EDUCATION</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="radio" id="work" name="mytabs">
+                        <label for="work">work experience</label>
+                        <div class="tab">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <ul>
+                                        <li>WEB DESIGNING COURSE <br> FROM AGRA 05/2022 TO 07/2022</li>
+                                        <li>INTERNSHIP <br>FROM CALL YOUR DHOBI 07/2022 TO 10/2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------servicies-------- -->
+    <div id="services">
+        <div class="container">
+            <h1 class="sub-titel">MY SERVICES</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Web Designer</h2>
+                    <p>As a web designer, my objective is to make a positive impact on clients, co-workers, and the
+                        Internet using my skills
+                        and experience to design compelling and attractive websites.
+                    </p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-microchip"></i>
+                    <h2>HTML Developer</h2>
+                    <p>As a web designer, my objective is to make a positive impact on clients, co-workers, and the
+                        Internet using my skills
+                        and experience to design compelling and attractive websites.
+                    </p>
+                </div>
+                <div>
+                    <i class="fa-sharp fa-solid fa-rocket"></i>
+                    <h2>UI Designer</h2>
+                    <p>As a web designer, my objective is to make a positive impact on clients, co-workers, and the
+                        Internet using my skills
+                        and experience to design compelling and attractive websites.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ---------portfolio----------- -->
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">MY WORK</h1>
+            <div class="work-list">
+                <div class="col-lg-6 work mx-auto">
+                    <img src="images/work-1.jpg" class="image">
+                    <div class="layer">
+                        <h3>Make My Policy</h3>
+                        <h4>Key Responsibilities</h4>
+                        <p>Convert PSD to HTML.</p>
+                        <p>Convert PSD to Bootstrap.</p>
+                        <p>Checking for errors and de-bugging websites.</p>
+                        <p>Client interaction about the project.</p>
+                        <p>Making the website responsive.</p>
+                        <a href="https://makemypolicy.herokuapp.com" target="_blank"><i class="fa-solid fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 work mx-auto">
+                    <img src="images/work-2.jpg" class="image">
+                    <div class="layer">
+                        <h3>E-Shop</h3>
+                        <h4>Key Responsibilities</h4>
+                        <p>Convert PSD to HTML.</p>
+                        <p>Convert PSD to Bootstrap.</p>
+                        <p>Checking for errors and de-bugging websites.</p>
+                        <p>Client interaction about the project.</p>
+                        <p>Making the website responsive.</p>
+                        <a href="https://himans17.github.io/e-shop/" target="_blank"><i class="fa-solid fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- --------------contact------------ -->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa-regular fa-envelope"></i>kushwahahimanshu18@gmail.com</p>
+                    <p><i class="fa-solid fa-phone"></i>7906356908</p>
+                    <a href="images/my-cv.pdf" download class="btn btn-outline-danger">Download CV</a>
+                </div>
+                <div class="col-lg-6 contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="text" name="email" placeholder="Your Email" required>
+                        <textarea name="Message" id="" rows="6" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright mx-auto">
+            <p class="text-center mt-5">copyright <i class="fa-solid fa-copyright"></i> 2022 Designed By Himanshu</p>
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzf7pRzZ8b-cHpzchdxHej_JYuLU-5pFcFgwKoBKpAoop_0Tk43UQsVAATnQ3X_SjcN/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    msg.innerHTML = "Message Sent Sucessfully"
+                    setTimeout(function () {
+                        msg.innerHTML = ""
+                    }, 5000);
+                    form.reset()
+                })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+
+    <script src="assets/typed.js/typed.min.js"></script>
+    <script src="assets/plugins/plugins.js"></script>
+    <script src="assets/jquery.min.js"></script>
+</body>
+
+</html>
